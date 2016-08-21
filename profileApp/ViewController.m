@@ -9,22 +9,33 @@
 #import "ViewController.h"
 
 @interface ViewController ()
+@property(nonatomic,strong)UIImageView *ProfileImage;
 @end
 
 @implementation ViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     //NSLog(NSStringFromCGRect(self.view.bounds));
     //{{414, 736}}
+    self.ProfileImage.userInteractionEnabled = YES;
+    self.ProfileImage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 100, 100)];
+    [_ProfileImage setBackgroundColor:[UIColor grayColor]];
+     //ProfileImage.image = [UIImage imageNamed:@"sindu.JPG"];
+    UITapGestureRecognizer *Click = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(changecolor:)];
+    [Click setNumberOfTapsRequired:1];
+    [_ProfileImage addGestureRecognizer:Click];
     
-    UIImageView *ProfileImage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 100, 100)];
-    //[ProfileImage setBackgroundColor:[UIColor grayColor]];
-     ProfileImage.image = [UIImage imageNamed:@"sindu.JPG"];
-    [[self view] addSubview:ProfileImage];
+    NSLog(@"ADD GESTURE RECOGNIZER");
+    
+    [[self view] addSubview:_ProfileImage];
     
     UIView *NameIdWindow = [[UIView alloc] initWithFrame:CGRectMake(120, 20, 274, 100)];
+    
+    UITapGestureRecognizer *Click2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(changecolor:)];
+    [Click2 setNumberOfTapsRequired:1];
+    [NameIdWindow addGestureRecognizer:Click2];
+    
     
     //[NameIdWindow setBackgroundColor:[UIColor redColor]];
     [[self view] addSubview:NameIdWindow];
@@ -53,7 +64,20 @@
     [Description setNumberOfLines:numberofLines];
     [DescritionWindow addSubview:Description];
     
+    
+    UIAlertController * ActionSheet = [UIAlertController alertControllerWithTitle:@"Choose Photo" message:@"Chosse" preferredStyle: UIAlertControllerStyleActionSheet] ;
+    
+   
 }
+
+-(void)changecolor: (UITapGestureRecognizer *)recognizer{
+    
+    [_ProfileImage setBackgroundColor:[UIColor redColor]];
+     NSLog(@"Click made");
+    
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
