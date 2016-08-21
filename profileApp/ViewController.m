@@ -10,6 +10,7 @@
 
 @interface ViewController ()
 @property(nonatomic,strong)UIImageView *ProfileImage;
+@property(nonatomic,weak)UIAlertController * alert;
 @end
 
 @implementation ViewController
@@ -21,7 +22,7 @@
     self.ProfileImage.userInteractionEnabled = YES;
     self.ProfileImage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 100, 100)];
     [_ProfileImage setBackgroundColor:[UIColor grayColor]];
-     //ProfileImage.image = [UIImage imageNamed:@"sindu.JPG"];
+    //ProfileImage.image = [UIImage imageNamed:@"sindu.JPG"];
     UITapGestureRecognizer *Click = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(changecolor:)];
     [Click setNumberOfTapsRequired:1];
     [_ProfileImage addGestureRecognizer:Click];
@@ -45,7 +46,7 @@
     //[Name setTextColor:[UIColor blueColor]];
     //[Name setBackgroundColor:[UIColor greenColor]];
     [NameIdWindow addSubview:Name];
-
+    
     
     UILabel * Id = [[UILabel alloc] initWithFrame:CGRectMake(20, 50, 100, 30)];
     [Id setText:@"ID: 123456"];
@@ -64,16 +65,44 @@
     [Description setNumberOfLines:numberofLines];
     [DescritionWindow addSubview:Description];
     
-    
-    UIAlertController * ActionSheet = [UIAlertController alertControllerWithTitle:@"Choose Photo" message:@"Chosse" preferredStyle: UIAlertControllerStyleActionSheet] ;
-    
-   
 }
 
 -(void)changecolor: (UITapGestureRecognizer *)recognizer{
     
-    [_ProfileImage setBackgroundColor:[UIColor redColor]];
-     NSLog(@"Click made");
+    //[_ProfileImage setBackgroundColor:[UIColor redColor]];
+    //[self presentViewController:alert animated:YES completion:nil];
+    NSLog(@"Click made");
+    UIAlertController  * alert=   [UIAlertController
+                                   alertControllerWithTitle:@"Choose"
+                                   message: nil
+                                   preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction* ChooseFromPhotos = [UIAlertAction
+                                       actionWithTitle:@"Choose from Photos"
+                                       style:UIAlertActionStyleDefault
+                                       handler:^(UIAlertAction * action)
+                                       {
+                                           [_ProfileImage setBackgroundColor:[UIColor greenColor]];
+                                           [alert dismissViewControllerAnimated:YES completion:nil];
+                                           
+                                       }];
+    UIAlertAction* OpenCamera = [UIAlertAction
+                                 actionWithTitle:@"open Camera"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action)
+                                 {
+                                     [_ProfileImage setBackgroundColor:[UIColor redColor]];
+                                     //[alert dismissViewControllerAnimated:YES completion:nil];
+                                     
+                                 }];
+    UIAlertAction * cancel = [UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        [alert dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
+    [alert addAction:ChooseFromPhotos];
+    [alert addAction:OpenCamera];
+    [alert addAction:cancel];
+    [self presentViewController:alert animated:YES completion:nil];
     
 }
 
