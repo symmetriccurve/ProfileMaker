@@ -9,8 +9,8 @@
 #import "ViewController.h"
 
 @interface ViewController ()
-@property(nonatomic,strong)UIImageView *ProfileImage;
-@property(nonatomic,weak)UIAlertController * alert;
+//@property(nonatomic,strong)UIImageView *ProfileImage;
+//@property(nonatomic,weak)UIAlertController * alert;
 @end
 
 @implementation ViewController
