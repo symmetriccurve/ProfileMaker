@@ -19,17 +19,17 @@
     
     //NSLog(NSStringFromCGRect(self.view.bounds));
     //{{414, 736}}
-    self.ProfileImage.userInteractionEnabled = YES;
-    self.ProfileImage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 100, 100)];
-    [_ProfileImage setBackgroundColor:[UIColor grayColor]];
+    self->ProfileImage.userInteractionEnabled = YES;
+    self->ProfileImage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 100, 100)];
+    [self->ProfileImage setBackgroundColor:[UIColor grayColor]];
     //ProfileImage.image = [UIImage imageNamed:@"sindu.JPG"];
     UITapGestureRecognizer *Click = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(changecolor:)];
     [Click setNumberOfTapsRequired:1];
-    [_ProfileImage addGestureRecognizer:Click];
+    [self->ProfileImage addGestureRecognizer:Click];
     
     NSLog(@"ADD GESTURE RECOGNIZER");
     
-    [[self view] addSubview:_ProfileImage];
+    [[self view] addSubview:self->ProfileImage];
     
     UIView *NameIdWindow = [[UIView alloc] initWithFrame:CGRectMake(120, 20, 274, 100)];
     
@@ -69,7 +69,7 @@
 
 -(void)changecolor: (UITapGestureRecognizer *)recognizer{
     
-    //[_ProfileImage setBackgroundColor:[UIColor redColor]];
+    //[self.ProfileImage setBackgroundColor:[UIColor redColor]];
     //[self presentViewController:alert animated:YES completion:nil];
     NSLog(@"Click made");
     UIAlertController  * alert=   [UIAlertController
@@ -82,7 +82,7 @@
                                        style:UIAlertActionStyleDefault
                                        handler:^(UIAlertAction * action)
                                        {
-                                           [_ProfileImage setBackgroundColor:[UIColor greenColor]];
+                                           [self->ProfileImage setBackgroundColor:[UIColor greenColor]];
                                            [alert dismissViewControllerAnimated:YES completion:nil];
                                            
                                        }];
@@ -91,7 +91,7 @@
                                  style:UIAlertActionStyleDefault
                                  handler:^(UIAlertAction * action)
                                  {
-                                     [_ProfileImage setBackgroundColor:[UIColor redColor]];
+                                     [self->ProfileImage setBackgroundColor:[UIColor redColor]];
                                      //[alert dismissViewControllerAnimated:YES completion:nil];
                                      
                                  }];
